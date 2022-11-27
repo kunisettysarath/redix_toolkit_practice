@@ -3,23 +3,23 @@ import { useSelector } from "react-redux";
 // import { selectAllUsers } from "../users/usersSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { postAdded } from "./postsSlice";
+import { postAdded, addNewPost } from "./postsSlice";
 
 const AddPostForm = () => {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [body, setContent] = useState("");
   const [userId, setUserId] = useState("");
   const users = useSelector((state) => state.users);
     const dispatch = useDispatch();
-    const enableSavePostButton = Boolean(title) && Boolean(content) && Boolean(userId);
+    const enableSavePostButton = Boolean(title) && Boolean(body) && Boolean(userId);
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onUserIDChanged = (e) => setUserId(e.target.value);
 
   const onSavePostClicked = () => {
-    if (title && content) {
-      dispatch(postAdded(title, content, userId));
+    if (title && body) {
+      dispatch(addNewPost({ title, body, userId })).unwrap()
       setTitle("");
       setContent("");
       setUserId("");
@@ -55,7 +55,7 @@ const AddPostForm = () => {
         <textarea
           id="postContent"
           name="postContent"
-          value={content}
+          value={body}
           onChange={onContentChanged}
         />
               <button type="button" disabled={ !enableSavePostButton } onClick={onSavePostClicked}>
