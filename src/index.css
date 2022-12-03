@@ -5,14 +5,15 @@
 }
 
 html {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background-color: white;
-  color: #000;
+ 
 }
 
 body {
   min-height: 100vh;
   font-size: 1.5rem;
+   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-color: white;
+  color: #000;
 }
 
 input,
@@ -24,11 +25,11 @@ select {
 }
 
 header {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: purple;
+  background-color: #5c1616;
   color: whitesmoke;
   position: sticky;
   top: 0;
@@ -58,7 +59,7 @@ nav a:hover, nav a:focus {
 }
 
 main {
-  max-width: 500px;
+  max-width: 650px;
   margin: auto;
 }
 
