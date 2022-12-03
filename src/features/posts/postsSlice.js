@@ -10,10 +10,10 @@ const initialState = {
   error: null,
 };
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const res = await axios.get(POSTS_URL, initialState);
-  return res.data;
-});
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await axios.get(POSTS_URL)
+  return response.data
+})
 
 export const addNewPost = createAsyncThunk(
   "posts/addNewPost",
@@ -29,7 +29,6 @@ export const postsSlice = createSlice({
   reducers: {
     postAdded: {
       reducer(state, action) {
-        console.log(state, "postadded state------------");
         state.posts.unshift(action.payload);
       },
       prepare(title, content, userId) {
@@ -53,7 +52,6 @@ export const postsSlice = createSlice({
     },
     reactionAdded: (state, action) => {
       const { id, name } = action.payload;
-      console.log(id, name, "payload----------");
       state.posts.map((val) => {
         if (val.id == id) val.reactions[name]++;
       });
@@ -109,12 +107,12 @@ export const postsSlice = createSlice({
           rocket: 0,
           coffee: 0,
         };
-        console.log(action.payload);
         state.posts.push(action.payload);
       });
   },
 });
 
 export const selectAllPosts = (state) => state.posts.posts;
+export const selectPostByID = (state, postID) => state.posts.posts.find(post =>  post.id === postID)
 export const { postAdded, reactionAdded } = postsSlice.actions;
 export default postsSlice.reducer;
