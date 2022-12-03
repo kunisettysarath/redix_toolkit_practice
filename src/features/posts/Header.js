@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { themeChange } from "../themeSlice";
+import { BsCloudSunFill } from "react-icons/bs";
+import { IoCloudyNightSharp } from "react-icons/io5";
 
 const Header = () => {
   // const [theme, setTheme] = React.useState(true);
@@ -27,7 +29,8 @@ const Header = () => {
           </li>
           <li>Post</li>
         </ul>
-        <button onClick={() => dispatch(themeChange())}>switch theme</button>
+        {theme ? <BsCloudSunFill onClick={() => dispatch(themeChange())}>switch theme</BsCloudSunFill> :
+        <IoCloudyNightSharp onClick={() => dispatch(themeChange())}>switch theme</IoCloudyNightSharp>}
       </nav>
     </header>
   );
