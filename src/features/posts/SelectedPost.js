@@ -1,10 +1,14 @@
+import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PostUserComponent from "../users/PostUserComponent";
+import { selectPostByID } from "./postsSlice";
 import Reactions from "./Reactions";
 import TimeAgo from "./TimeAgo";
 
-const PostsExcerpt = ({ post }) => {
+function SelectedPost() {
+  const params = useParams();
+  const post = useSelector((state) => selectPostByID(state, Number(params.id)));
   const theme = useSelector((state) => state.theme.theme);
   return (
     <article
@@ -14,12 +18,19 @@ const PostsExcerpt = ({ post }) => {
       <h3>{post.title}</h3>
       <p className="excerpt">{post.body.substring(0, 75)}...</p>
       <p className="postCredit">
-    <Link to={`post/${post.id}`} style={!theme ? { color: "white" } : { color: "black" }}>View Post</Link>
-        <PostUserComponent userId={Number(post.userId)} />
+        <Link
+          to={`/post/edit/${post.id}`}
+          state={{ postInfo: { post } }}
+          style={!theme ? { color: "white" } : { color: "black" }}
+        >
+          Edit Post
+        </Link>
+        <PostUserComponent userId={post.userId} />
         <TimeAgo timestamp={post.date} />
       </p>
       <Reactions post={post} />
     </article>
   );
-};
-export default PostsExcerpt;
+}
+
+export default SelectedPost;

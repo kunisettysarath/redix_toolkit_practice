@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { themeChange } from "../themeSlice";
 import { BsCloudSunFill } from "react-icons/bs";
 import { IoCloudyNightSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   // const [theme, setTheme] = React.useState(true);
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
-  console.log(theme, "----------");
 
   React.useEffect(() => {
     if (theme) {
@@ -25,12 +25,12 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <>Home</>
+            <Link to="/">Home</Link>
           </li>
-          <li>Post</li>
+          <Link to="/post">Post</Link>
         </ul>
-        {theme ? <BsCloudSunFill onClick={() => dispatch(themeChange())}>switch theme</BsCloudSunFill> :
-        <IoCloudyNightSharp onClick={() => dispatch(themeChange())}>switch theme</IoCloudyNightSharp>}
+        {theme ? <BsCloudSunFill id="react_icon" onClick={() => dispatch(themeChange())}>switch theme</BsCloudSunFill> :
+        <IoCloudyNightSharp id="react_icon" onClick={() => dispatch(themeChange())}>switch theme</IoCloudyNightSharp>}
       </nav>
     </header>
   );

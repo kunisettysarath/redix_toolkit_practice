@@ -129,3 +129,7 @@ textarea {
   background-color: palevioletred;
   color: white;
 }
+
+#react_icon  {
+  margin-left: 10px;
+}

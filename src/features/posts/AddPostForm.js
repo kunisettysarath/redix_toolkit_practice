@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postAdded, addNewPost } from "./postsSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [body, setContent] = useState("");
   const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
   const users = useSelector((state) => state.users);
     const dispatch = useDispatch();
     const enableSavePostButton = Boolean(title) && Boolean(body) && Boolean(userId);
@@ -23,6 +25,7 @@ const AddPostForm = () => {
       setTitle("");
       setContent("");
       setUserId("");
+      navigate("/")
       }
   };
 
