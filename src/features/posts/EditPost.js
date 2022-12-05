@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
-import { selectUserByID } from "../users/usersSlice";
-import { selectPostByID, updatePost } from "./postsSlice";
+import {
+  useLocation,
+  useNavigate
+} from "react-router-dom";
+import { updatePost } from "./postsSlice";
 
 function EditPost() {
   const location = useLocation();
-    const selectedPost = location.state.postInfo.post;
-    const navigate = useNavigate()
-  const selectedUser = useSelector((state) =>
-    selectUserByID(state, selectedPost.userId)
-  );
+  const selectedPost = location.state.postInfo.post;
+  const navigate = useNavigate();
   const [title, setTitle] = useState(selectedPost.title);
   const [body, setContent] = useState(selectedPost.body);
   const [userId, setUserId] = useState(selectedPost.userId);
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  const postID = useParams();
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onUserIDChanged = (e) => setUserId(e.target.value);
 
   const enableSavePostButton =
-    Boolean(title) && Boolean(body) && Boolean(userId);
+  title!==selectedPost.title || body!==selectedPost.body || userId!==selectedPost.userId
+console.log(title===selectedPost.title)
+console.log(body===selectedPost.body)
+console.log(userId===selectedPost.userId)
 
   const userOptions = users.map((user) => {
     return (
@@ -44,7 +45,6 @@ function EditPost() {
           reactions: selectedPost.reactions,
         })
       ).unwrap();
-
       setTitle("");
       setContent("");
       setUserId("");

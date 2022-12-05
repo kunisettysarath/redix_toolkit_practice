@@ -21,7 +21,8 @@ const Header = () => {
   }, [theme]);
   return (
     <header className="Header">
-      <h1>Redux Blog</h1>
+      <Link style={{textDecoration: 'none'}}to="/"><h1>Redux Blog</h1></Link>
+      {/* <h1>Redux Blog</h1> */}
       <nav>
         <ul>
           <li>
