@@ -34,7 +34,7 @@ console.log(userId===selectedPost.userId)
     );
   });
 
-  const onUpdatePostClicked = () => {
+    const onUpdatePostClicked = () => {
     if (title && body) {
       dispatch(
         updatePost({

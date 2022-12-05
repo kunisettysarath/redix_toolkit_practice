@@ -5,6 +5,7 @@ import { selectAllPosts, selectPostByID } from "./postsSlice";
 import { useEffect } from "react";
 import { fetchPosts } from "./postsSlice";
 import DisplayPost from "./DisplayPost";
+import { HashLoader } from "react-spinners";
 
 const PostsList = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,8 @@ const PostsList = () => {
   }, [status, dispatch]);
   let content;
     if (status === 'loading') {
-        content = <p>"Loading..."</p>;
+        // content = <p>"Loading..."</p>;
+      content = <div className="loaders" ><HashLoader size={ 50 } color="#5c1616" /></div>
     } else if (status === 'succeeded') {
       const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
       // console.log(orderedPosts)

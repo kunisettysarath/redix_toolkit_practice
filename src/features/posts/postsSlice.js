@@ -10,7 +10,10 @@ const initialState = {
   error: null,
 };
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  await delay(5000);
+  console.log("`````````````````")
   const response = await axios.get(POSTS_URL)
   return response.data
 })

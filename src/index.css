@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-html {
- 
-}
-
 body {
   min-height: 100vh;
   font-size: 1.5rem;
@@ -74,6 +70,13 @@ article {
   padding: 1em;
 }
 
+.loaders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #5c1616; */
+  
+}
 h1 {
   font-size: 3.5rem;
   color: white;
